@@ -1,0 +1,86 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "linklist.h"
+
+int main()
+{
+    /* 建立LinkedList、列印與記憶體釋放 */
+    NODE *first;
+    int arr[]={1,2,3,4,5};
+    first=createList(arr,5);
+    printList(first);
+    freeList(first);
+
+    return 0;
+}
+
+/* createList()，串列建立函數 */
+NODE *createList(int *arr, int len)
+{
+    int i;
+    NODE *first,*current,*previous;
+    for (i=0;i<len;i++)
+    {
+        current = (NODE *) malloc(sizeof(NODE));
+        current->data = arr[i];        /* 設定節點的資料成員 */
+        if (i==0)
+            first=current;
+        else
+            previous->next = current;  /* 把前一個節點的 next 指向目前的結點 */
+        current->next = NULL;
+        previous = current;
+    }
+    return first;
+}
+
+/* printList，串列建立函數 */
+void printList(NODE* first)
+{
+    NODE* node = first;   /* 將node指向第一個節點 */
+    if (first==NULL)      /* 如果串列是空的，則列印出 List is empty! */
+            printf("List is empty!\n");
+    else
+    {
+        while (node!=NULL)
+        {
+            printf("%3d", node->data);
+            node=node->next;
+        }
+        printf("\n");
+    }
+}
+
+/* freeList()，釋放串列記憶空間函數 */
+void freeList(NODE* first)
+{
+    NODE *current,*tmp;
+    current = first;
+    while (current!=NULL)
+    {
+        tmp=current;
+        current = current->next;
+        free(tmp);
+    }
+}
+
+/* 插入節點函數 */
+NODE* search Node(NODE* first, int item)
+{
+    NODE *node=first;
+    while(node!=NULL)
+    {
+        if (node->data==item)
+            return node;
+        else
+            node=node->next;
+    }
+    return NULL;
+}
+
+/* 搜尋結點函數 */
+
+
+
+/* 刪除節點函數 */
+
+
